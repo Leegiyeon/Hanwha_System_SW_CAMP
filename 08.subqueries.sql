@@ -82,3 +82,52 @@ SELECT
   JOIN tbl_menu b ON (a.category_code = b.category_code)
  GROUP BY a.category_code, a.category_name;
  
+ 
+ -- 가장 높은 급여를 받는 사원(MAX)
+SELECT
+		 emp_id
+	  , emp_name
+	  , MAX(salary)
+  FROM employee;
+
+-- 평균 급여가 가장 높은 부서(AVG,MAX) MAX(AVG)
+
+-- i) 이중 서브쿼리
+SELECT AVG(salary)
+  FROM employee
+ GROUP BY dept_code;
+
+SELECT MAX(a.sal_avg)
+  FROM (SELECT AVG(salary) as sal_avg
+  			 FROM employee
+  			GROUP BY dept_code) a;
+  			
+SELECT
+		 dept_title
+	  , dept_code
+  FROM employee
+  JOIN department a ON (a.DEPT_ID = employee.dept_code)
+ GROUP BY dept_code
+HAVING AVG(salary) = (SELECT MAX(a.sal_avg)
+  								FROM (SELECT AVG(salary) as sal_avg
+  			 							  FROM employee
+  							  		 	 GROUP BY dept_code) a);
+
+-- ii) >= ALL 활용
+-- 서브쿼리 중에 다중행 서브쿼리인 경우에는 비교 연산자가 일반 비교 연산자와 달라진다.
+-- > ALL, < ALL, > ANY, < ANY, IN
+-- 1. > ALL: 모든 서브쿼리결과보다 크다.(서브 쿼리의 최댓값보다 크다)
+-- 2. < ALL: 모든 서브쿼리결과보다 작다.(서브쿼리의 최솟값보다 작다)
+-- 3. > ANY: 서브쿼리결과보다 최소 하나보다는 크다.(서브쿼리의 최솟값보다 크다)    
+-- 4. < ANY: 서브쿼리결과보다 최대 하나보다는 작다.(서브쿼리의 최댓값보다 작다)
+-- 5. IN: 서브쿼리 결과중에 하나라도 일치한다.
+
+SELECT
+		 dept_title
+	  , dept_code
+  FROM employee
+  JOIN department a ON (a.DEPT_ID = employee.dept_code)
+ GROUP BY dept_code
+HAVING AVG(salary) >= ALL(SELECT AVG(salary)
+  						   		 FROM employee 
+  						  			GROUP BY dept_code); 
