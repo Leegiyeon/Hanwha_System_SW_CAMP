@@ -42,6 +42,7 @@ SELECT
 	  , TRIM(LEADING '@' FROM '@@@@    중앙   @@@@')
 	  , TRIM(TRAILING '@' FROM '@@@@    중앙   @@@@');
 
+SELECT CONCAT(menu_name, '의 가격은 ', menu_price, '원 입니다.') FROM tbl_menu;
 
 -- 2.숫자 관련함수
 
