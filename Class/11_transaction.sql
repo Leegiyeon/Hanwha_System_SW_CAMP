@@ -22,6 +22,8 @@ UPDATE tbl_menu
 SELECT * FROM tbl_menu;
 
 ROLLBACK;
+
+SELECT * FROM tbl_menu;
  
 
   
