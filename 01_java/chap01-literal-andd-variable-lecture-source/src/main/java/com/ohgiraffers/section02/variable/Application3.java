@@ -61,5 +61,9 @@ public class Application3 {
         boolean isAlive = true;
         boolean isDead = false;
 
+
+
+        final int ABC;
+
     }
 }
