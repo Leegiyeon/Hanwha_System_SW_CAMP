@@ -1,6 +1,7 @@
 package com.ohgiraffers.section02.package_and_import;
 
 import com.ohgiraffers.section01.method.Calculator; // 설명. import는 경로를 생략하기 위해 작성 (줄여 쓰기 위함)
+
 public class Application2 {
     public static void main(String[] args) {
 
