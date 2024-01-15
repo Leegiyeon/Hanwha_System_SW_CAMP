@@ -19,7 +19,20 @@ public class Application {
 //        bClass.printUpgradeGugudanFromTwoNine();(
 
         /* 필기. 별찍기 */
-        bClass.printStars();
+//        bClass.printStars();
+
+        /* 필기. while문 사용 */
+        C_while cClass = new C_while();
+//        cClass.testSimpleWhileStatement();
+//        cClass.testWhileExample();
+
+        /* 필기. do-while문 사용 */
+        D_doWhile dClass = new D_doWhile();
+//        dClass.testSimpleDoWhileStatement();
+        dClass.testDoWhileExample();
+
+
+
 
 
     }
