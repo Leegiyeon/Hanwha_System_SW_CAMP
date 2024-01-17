@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/01_java/atm" />
+        <option name="gradleJvm" value="corretto-20" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/01_java/atm" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="testRunner" value="PLATFORM" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/01_java/chap01-literal-and-variable-lecture-source" />
+        <option name="gradleJvm" value="corretto-20" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/01_java/chap01-literal-and-variable-lecture-source" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/01_java/chap02-operator-lecture-source" />
+        <option name="gradleJvm" value="corretto-20" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/01_java/chap02-operator-lecture-source" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/01_java/chap03-method-and-api-lecture-source" />
+        <option name="gradleJvm" value="corretto-20" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/01_java/chap03-method-and-api-lecture-source" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/01_java/chap04-control-flow-lecture-source" />
+        <option name="gradleJvm" value="openjdk-21" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/01_java/chap04-control-flow-lecture-source" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

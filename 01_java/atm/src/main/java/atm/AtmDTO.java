@@ -5,7 +5,7 @@ import java.util.Date;
 public class AtmDTO {
 
     private int accountNumber;      // 계좌번호 = id = accountNumber
-    private System name;            // 고객이름 = name
+    private String name;            // 고객이름 = name
     private String pwd;             // 비밀번호 = pwd
     private double balance;         // 잔액 = balance
     private double deposit;         // 입금액 = deposit
@@ -23,12 +23,20 @@ public class AtmDTO {
         this.accountNumber = accountNumber;
     }
 
-    public System getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(System name) {
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
     public double getBalance() {
@@ -36,6 +44,14 @@ public class AtmDTO {
     }
 
     public void setBalance(double balance) {
+//        Deposit deposit = new Deposit();
+//        deposit.howMuch();
+//        deposit.sumBalance();
+
+//        Withdraw withdraw = new Withdraw();
+//        withdraw.howMuch();
+//        withdraw.sumBalance();
+
         this.balance = balance;
     }
 
