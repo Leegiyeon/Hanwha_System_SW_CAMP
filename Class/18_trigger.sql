@@ -13,6 +13,8 @@ END//
 
 DELIMITER ;
 
+SHOW TRIGGERS;
+DROP TRIGGER after_order_menu_insert;
 
 -- 주문 테이블(tbl_order)에 insert 후 주문 메뉴 테이블(tbl_order_menu)에 주문한 메뉴마다
 -- insert 후 주문 테이블에 총 금액이 업데이트 되는지 확인하자.
@@ -184,7 +186,7 @@ FOR EACH ROW
 BEGIN
   IF NEW.STATUS = '입고' THEN
     UPDATE PRODUCT A
-       SET A.STOCK = A.STOCK + NEW.AMOUNT
+       SET A.STOCK = A.STOCK + NEW.AMOUNTmenudb
      WHERE A.PCODE = NEW.PCODE;
   ELSEIF NEW.STATUS = '출고' THEN
     UPDATE PRODUCT A 
