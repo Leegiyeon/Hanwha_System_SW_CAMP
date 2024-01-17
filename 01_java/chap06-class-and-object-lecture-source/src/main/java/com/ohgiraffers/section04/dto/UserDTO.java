@@ -14,18 +14,21 @@ import java.util.Date;
  *     2. 접근 제어자는 private
  *     3. 기본 생성자가 명시적으로 존재해야함
  *     4. 모든 필드에 접근 가능한 setter, getter이 public으로 작성되어야 함
- *     5. 직렬화를 고려(선택사항)
+ *     5. 직렬화(Serializable)를 고려(선택사항)
 * */
 
 
 
 public class UserDTO {          //Data Transfer Object
 
+    /* 필기. 1. 필드(멤버변수) */
+
     private String id;
     private String pwd;
     private String name;
     private java.util.Date enrollDate;
 
+    /* 필기. 2. 생성자(기본생성자 필수 작성) */
     public UserDTO() {
 
     }
@@ -37,6 +40,9 @@ public class UserDTO {          //Data Transfer Object
         this.enrollDate = enrollDate;
     }
 
+
+
+    /* 필기. 3. 설정자(setter)와 접근자(getter) 작성 */
     public void setId(String id) {
         this.id = id;
         System.out.println("데이터 세팅 중...");
@@ -73,7 +79,19 @@ public class UserDTO {          //Data Transfer Object
         this.enrollDate = enrollDate;
     }
 
-    public String forInformation(){
-        return id + " " + pwd + " " + name + " " + enrollDate;
+//    public String forInformation(){
+//        return id + " " + pwd + " " + name + " " + enrollDate;
+//    }
+
+
+    /* 필기. 4. 모든 멤버변수를 String으로 반환하는 toString() */
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id='" + id + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", name='" + name + '\'' +
+                ", enrollDate=" + enrollDate +
+                '}';
     }
 }
