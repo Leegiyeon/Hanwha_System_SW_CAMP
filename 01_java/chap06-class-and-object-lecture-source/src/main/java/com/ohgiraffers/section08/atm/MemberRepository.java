@@ -1,4 +1,4 @@
-package com.ohgiraffers.section08.uses;
+package com.ohgiraffers.section08.atm;
 
 public class MemberRepository {
 
