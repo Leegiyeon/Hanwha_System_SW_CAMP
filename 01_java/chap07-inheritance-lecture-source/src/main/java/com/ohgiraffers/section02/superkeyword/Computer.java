@@ -32,29 +32,29 @@ public class Computer extends Product {
         System.out.println("Computer 클래스의 부모필드까지 모두 초기화하는 생성자 호출함...");
     }
 
-    @Override
-    public String toString() {
-        return "Computer{" +
-                "cpu='" + cpu + '\'' +
-                ", hdd=" + hdd +
-                ", ram=" + ram +
-                ", operationSystem='" + operationSystem + '\'' +
-                "} " + super.toString();
-    }
-
-    //    @Override
+//    @Override
 //    public String toString() {
 //        return "Computer{" +
 //                "cpu='" + cpu + '\'' +
 //                ", hdd=" + hdd +
 //                ", ram=" + ram +
 //                ", operationSystem='" + operationSystem + '\'' +
-//                "} " +  "Product{" +
-//                "code='" + super.getCode() + '\'' +
-//                ", brand='" + super.getBrand() + '\'' +
-//                ", name='" + this.getName() + '\'' +
-//                ", price=" + this.getPrice() +
-//                ", manufacturingDate=" + this.getManufacturingDate() +
-//                '}';
+//                "} " + super.toString();
 //    }
+
+        @Override
+    public String toString() {
+        return "Computer{" +
+                "cpu='" + cpu + '\'' +
+                ", hdd=" + hdd +
+                ", ram=" + ram +
+                ", operationSystem='" + operationSystem + '\'' +
+                "} " +  "Product{" +                // Memo. super.toString()과 같음;
+                "code='" + super.getCode() + '\'' +
+                ", brand='" + super.getBrand() + '\'' +
+                ", name='" + this.getName() + '\'' +
+                ", price=" + this.getPrice() +
+                ", manufacturingDate=" + this.getManufacturingDate() +
+                '}';
+    }
 }
