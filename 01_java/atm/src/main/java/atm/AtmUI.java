@@ -15,7 +15,6 @@ public class AtmUI {
 
 
         while (isOn) {
-
             System.out.println("====    ATM    ====");
             System.out.println("==== 1.  입금   ====");
             System.out.println("==== 2.  출금   ====");
@@ -40,15 +39,16 @@ public class AtmUI {
             } else if (input == 3) {
                 if (member.login(pass)) {
                     member.getBalance();
+                }
 //            } else if (input == 4) {
 //                member.memberManager();
 //                member.signUp(idx);
-                } else if (input == 9) {
-                    System.out.println("ATM이 종료됩니다.");
-                    isOn = false;
-                }
-                idx++;
+            } else if (input == 9) {
+                System.out.println("ATM이 종료됩니다.");
+                isOn = false;
             }
+            idx++;
         }
     }
 }
+

@@ -98,14 +98,14 @@ public class Member {
 
 //        System.out.println("member account: " + members[3].accountNumber);
 
-        id = 0;
+//        id = 0;
         for (int i = 0; i < members.length; i++) {
             if (accountNumber == members[i].accountNumber) {
                 id = i;
                 System.out.print("비밀번호를 입력해주세요: ");
                 pwd = sc.next();
-                System.out.println("member pwd: " + members[id].pwd);
-                System.out.println("pwd: " + pwd);
+//                System.out.println("member pwd: " + members[id].pwd);
+//                System.out.println("pwd: " + pwd);
                 if (Objects.equals(pwd, members[id].pwd)) {         // Memo. pwd == members[id].pwd 는 적용이 안됨
                     login = true;
                     System.out.println("로그인 되었습니다.");
@@ -165,6 +165,7 @@ public class Member {
         } else {
             System.out.println("출금하실 금액을 다시 확인해주세요.");
             withdraw();
+//            System.out.println("재귀");  // Depth 추가됨
         }
     }
 }
