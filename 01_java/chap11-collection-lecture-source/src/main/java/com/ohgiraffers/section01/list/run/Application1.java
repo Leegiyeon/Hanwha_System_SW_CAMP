@@ -98,5 +98,24 @@ public class Application1 {
         Collections.sort(stringList);
         System.out.println("stringList = " + stringList);
 
+        List<Integer> integerList = new ArrayList<>();
+        integerList.add(4);
+        integerList.add(20);
+        integerList.add(5);
+        integerList.add(8);
+        integerList.add(14);
+
+        System.out.println("integerList = " + integerList);
+        Collections.sort(integerList);
+        System.out.println("integerList = " + integerList);
+
+        /* 설명. 내림차순으로 바꾸기 위해 ArrayList에서 LinkedList로 교체 */
+        stringList = new LinkedList<>(stringList);
+        Iterator<String> iter = ((LinkedList<String>)stringList).descendingIterator();
+
+        while (iter.hasNext()){
+            System.out.println(iter.next());
+        }
+
     }
 }
