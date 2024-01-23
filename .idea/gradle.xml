@@ -4,8 +4,10 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="testRunner" value="PLATFORM" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/01_java/atm" />
-        <option name="gradleJvm" value="corretto-20" />
+        <option name="gradleJvm" value="17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/01_java/atm" />
@@ -16,7 +18,7 @@
         <option name="delegatedBuild" value="false" />
         <option name="testRunner" value="PLATFORM" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/01_java/chap01-literal-and-variable-lecture-source" />
-        <option name="gradleJvm" value="corretto-20" />
+        <option name="gradleJvm" value="17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/01_java/chap01-literal-and-variable-lecture-source" />
@@ -25,7 +27,7 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/01_java/chap02-operator-lecture-source" />
-        <option name="gradleJvm" value="corretto-20" />
+        <option name="gradleJvm" value="17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/01_java/chap02-operator-lecture-source" />
@@ -34,7 +36,7 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/01_java/chap03-method-and-api-lecture-source" />
-        <option name="gradleJvm" value="corretto-20" />
+        <option name="gradleJvm" value="17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/01_java/chap03-method-and-api-lecture-source" />
