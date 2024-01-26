@@ -2,6 +2,7 @@ package com.ohgiraffers.section04.assignment.repository;
 
 import com.ohgiraffers.section04.assignment.aggregate.BloodType;
 import com.ohgiraffers.section04.assignment.aggregate.Member;
+import com.ohgiraffers.section04.assignment.stream.MyObjectOutput;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -9,21 +10,30 @@ import java.util.ArrayList;
 /* 설명. 데이터와 입출력을 위해 만들어지며 성공 실패 결과를 반환하는 클래스 */
 public class MemberRepository {
 
-    /* memo. saveMember에서 출력한 데이터를 담을 ArrayList 생성 */
-    private final ArrayList<Member> memberList = new ArrayList<>();
+    private ArrayList<Member> memberList = new ArrayList<>();
 
-    /* 설명. 시스템이 켜지자마자(MemberRepository()가 실행되자마자) 파일에 dummy 데이터 추가 및 입력 */
+    /* 설명. 프로그램이 켜지자 마자(MemberRepository()가 실행되자마자) 파일에 dummy 데이터 추가 및 입력받기 */
     public MemberRepository() {
         ArrayList<Member> members = new ArrayList<>();
-        members.add(new Member(1, "user01", "pass01", 20, new String[]{"발레", "수영"}, BloodType.A));
-        members.add(new Member(2, "user02", "pass02", 10, new String[]{"게임", "영화감상"}, BloodType.B));
-        members.add(new Member(3, "user03", "pass03", 30, new String[]{"음악감상", "독서", "명상"}, BloodType.O));
+
+        /* 설명. 회원가입 기능 추가 후, 기존 파일 존재하면 초기화 하지 않음 */
+        File file = new File("src/main/java/com/ohgiraffers/section04/assignment/db/memberDB.dat");
+        if (!file.exists()) {
+            members.add(new Member(1, "user01", "pass01", 20,
+                    new String[]{"발레", "수영"}, BloodType.A));
+            members.add(new Member(2, "user02", "pass02", 10,
+                    new String[]{"게임", "영화시청"}, BloodType.B));
+            members.add(new Member(3, "user03", "pass03", 15,
+                    new String[]{"음악감상", "독서", "명상"}, BloodType.O));
+
+            saveMembers(members);
+        }
 
         saveMembers(members);
         loadMembers();
 
-//        System.out.println("=====Repository에세 회원정보 읽어왔는지 확인=====");
-//        for (Member m : memberList) {
+//        System.out.println("==== repository에서 회원정보 다 읽어왔는지 확인 ====");
+//        for(Member m: memberList) {
 //            System.out.println(m);
 //        }
     }
@@ -35,15 +45,14 @@ public class MemberRepository {
         try {
             oos = new ObjectOutputStream(
                     new BufferedOutputStream(
-                            new FileOutputStream(
-                                    "src/main/java/com/ohgiraffers/section04/assignment/db/memberDB.dat")));
+                            new FileOutputStream("src/main/java/com/ohgiraffers/section04/assignment/db/memberDB.dat")));
 
-            /* 설명. 넘어온 회원 수만큼 객체 출력 */
+            /* 설명. 넘어온 회원 수만큼 객체 출력하기 */
             for (Member m : members) {
                 oos.writeObject(m);
             }
-            oos.flush();        // memo. 출력 시, Flush
 
+            oos.flush();                // 출력 시에는 flush 해 줄것
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
@@ -55,22 +64,21 @@ public class MemberRepository {
         }
     }
 
-
-    /* 설명. 파일로부터 회원 객체들을 입력받아 memberList에 쌓기*/
+    /* 설명. 파일로부터 회원 객체들을 입력받아 memberList에 쌓기 */
     private void loadMembers() {
         ObjectInputStream ois = null;
         try {
             ois = new ObjectInputStream(
                     new BufferedInputStream(
-                            new FileInputStream(
-                                    "src/main/java/com/ohgiraffers/section04/assignment/db/memberDB.dat")));
-//            System.out.println(ois.readObject());
+                            new FileInputStream("src/main/java/com/ohgiraffers/section04/assignment/db/memberDB.dat")));
+
             /* 설명. 파일로부터 모든 회원 정보를 읽어 memberList에 추가(add) */
             while (true) {
-                memberList.add((Member)ois.readObject());
+                memberList.add((Member) (ois.readObject()));
             }
+
         } catch (EOFException e) {
-            System.out.println("회원 정보 Load complete");
+            System.out.println("회원 정보 모두 로딩됨...");
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -82,18 +90,57 @@ public class MemberRepository {
                 throw new RuntimeException(e);
             }
         }
-
     }
 
     public ArrayList<Member> selectAllMembers() {
         return memberList;
     }
 
-
     public Member selectMember(int memNo) {
-        for(Member m: memberList) {
+        for (Member m : memberList) {
             if (m.getMemNo() == memNo) return m;
         }
         return null;
+    }
+
+
+    public int selectLastMemberNo() {
+        Member lastMember = memberList.get(memberList.size() - 1);
+        return lastMember.getMemNo();
+    }
+
+    /* 설명. 기존회원 객체에 이어서 파일출력 및 추가한 회원 객체 수 반환 */
+    public int registMember(Member member) {
+        return saveMember(member);
+    }
+
+    /* 설명. 객체 출력 예정이오나 기존 ObjectOutputStream 대신 새로 정의한 스트림으로 회원 출력하여 int 반환 */
+    private int saveMember(Member member) {
+        MyObjectOutput moo = null;
+        try {
+            moo = new MyObjectOutput(
+                    new BufferedOutputStream(
+                            new FileOutputStream(
+                                    "src/main/java/com/ohgiraffers/section04/assignment/db/memberDB.dat", true)));
+            /* 설명. 파일로 객체하나 출력 */
+            moo.writeObject(member);
+
+            /* 설명. Repository의 memberList에 추가 */
+            memberList.add(member);
+
+            moo.flush();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (moo != null) moo.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return 1;
+
     }
 }

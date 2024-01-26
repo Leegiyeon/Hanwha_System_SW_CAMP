@@ -25,6 +25,17 @@ public class Member implements Serializable {       // memo. 객체 입출력을
         this.bloodType = bloodType;
     }
 
+    public Member(String id, String pwd, int age, String[] hobbies) {
+    }
+
+    public void setBloodType(BloodType bt) {
+
+    }
+
+    public void setMemNo(int memNo) {
+        this.memNo = memNo;
+    }
+
     public int getMemNo() {
         return memNo;
     }
@@ -60,4 +71,6 @@ public class Member implements Serializable {       // memo. 객체 입출력을
                 ", bloodType=" + bloodType +
                 '}';
     }
+
+
 }
