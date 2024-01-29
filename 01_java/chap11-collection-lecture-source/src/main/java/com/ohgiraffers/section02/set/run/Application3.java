@@ -21,7 +21,7 @@ public class Application3 {
         for (int i = 0; i < 6; i++) {
 
             while (true){
-                int winning = (int) (Math.random() * 10) + 1;       // Memo. 난수 발생(1~45)
+                int winning = (int) (Math.random() * 45) + 1;       // Memo. 난수 발생(1~45)
 
                 boolean flag = true;
 
@@ -37,11 +37,20 @@ public class Application3 {
                 }
             }
         }
-        for (int i = 0; i < 6; i++) {
-            if (lotto[i] > lotto[i+1]){
-                lotto[i] = lotto[i+1];
-            }
 
+        for (int i = 0; i < 6; i++) {
+            System.out.println(lotto[i]);
+        }
+
+        int tmp = 0;
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                if (lotto[i] < lotto[j]){
+                    tmp = lotto[i];
+                    lotto[i] = lotto[j];
+                    lotto[j] = tmp;
+                }
+            }
         }
 
         for (int i = 0; i < 6; i++) {
