@@ -31,7 +31,7 @@ public class Application {
                     break;
                 case 3: mm.registMember(signUp());
                     break;
-                case 4:
+                case 4: mm.deleteMember(chooseMemberNo());
                     break;
                 case 9: System.out.println("프로그램을 종료합니다.");
                     return;
@@ -45,8 +45,6 @@ public class Application {
         Scanner sc = new Scanner(System.in);
         System.out.print("회원번호를 입력하세요: ");
         return sc.nextInt();
-
-
     }
 
     /* 설명. 사용자로부터 회원번호를 제외한 정보를 입력 받아(회원가입용 정보) Member타입으로 반환하는 메소드(파싱 및 가공처리) */

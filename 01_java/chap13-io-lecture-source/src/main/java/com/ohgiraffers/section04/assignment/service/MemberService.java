@@ -41,19 +41,26 @@ public class MemberService {
         }
     }
 
-
-    /* 설명. 입력받아 넘어온 회원이 가징 번호를 만들고 추가 후, Repository로 전달 후 확인 */
+    /* 설명. 입력받아 넘어온 회원이 가질 번호를 만들고 추가 후 repository로 전달 후 결과 확인 */
     public void registMember(Member member) {
-        System.out.println("사용자가 입력해서 넘겨준 Member 확인: " + member);
+//        System.out.println("사용자가 입력해서 넘겨준 Member 확인: " + member);
 
-        int lastNumberNo = mr.selectLastMemberNo();
-        member.setMemNo(lastNumberNo + 1);
-
+        int lastMemberNo = mr.selectLastMemberNo();
+        member.setMemNo(lastMemberNo + 1);
 
         int result = mr.registMember(member);
-        if (result == 1){
-            System.out.println("회원 가입 성공 : )");
+        if(result == 1) {
+            System.out.println(member.getId() + "님의 회원 가입이 성공하였습니다.");
         }
     }
 
+    public void deleteMember(int memNo) {
+        int result = mr.deleteMember(memNo);
+        if(result > 0) {
+            System.out.println(memNo + "번 회원 탈퇴를 성공하였습니다.");
+            return;
+        }
+
+        System.out.println("회원 탈퇴에 실패하였습니다.");
+    }
 }

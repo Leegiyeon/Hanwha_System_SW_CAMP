@@ -1,7 +1,5 @@
 package com.ohgiraffers.section04.assignment.stream;
 
-import com.ohgiraffers.section03.filterstream.MyOutput;
-
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
@@ -13,6 +11,7 @@ public class MyObjectOutput extends ObjectOutputStream {
 
     @Override
     protected void writeStreamHeader() throws IOException {
-        /* 설명. 객체 출력 시, 헤더 추가 관련 기능이 없도록 재정의 */
+
+        /* 설명. 객체 출력 시 헤더 추가 관련 기능이 없도록 재정의 */
     }
 }
