@@ -77,7 +77,7 @@ public class Application1 {
 //            }
 //        }
 
-        for (int i = length; i >0; i--) {
+        for (int i = length; i > 0; i--) {
             System.out.println("arr: " + Arrays.toString(arr));
             for (int j = 0; j < i - 1; j++) {
                 if(arr[j] > arr[j+1]){
