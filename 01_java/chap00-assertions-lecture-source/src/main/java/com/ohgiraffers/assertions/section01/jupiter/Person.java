@@ -2,15 +2,14 @@ package com.ohgiraffers.assertions.section01.jupiter;
 
 public class Person {
 
-
     private String firstName;
     private String lastName;
 
-    public Person() {
-    }
-    public Person(String firstName, String secondName) {
+    public Person() {}
+
+    public Person(String firstName, String lastName) {
         this.firstName = firstName;
-        this.lastName = secondName;
+        this.lastName = lastName;
     }
 
     public String getFirstName() {
@@ -21,12 +20,19 @@ public class Person {
         this.firstName = firstName;
     }
 
-    public String getlastName() {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setlastName(String secondName) {
-        this.lastName = secondName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }
-
