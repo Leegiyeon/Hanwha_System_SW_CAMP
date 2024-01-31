@@ -1,7 +1,9 @@
 package com.ohgiraffers.chap02.section01.sorting;
 
-import com.sun.jdi.connect.Connector;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -9,8 +11,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-public class Application1Tests {
-
+public class Application3Tests {
 
     private static int input1, input2;
 
@@ -38,14 +39,12 @@ public class Application1Tests {
         );
     }
 
-
-    @DisplayName("버블 정렬 테스트")
+    @DisplayName("삽입 정렬 테스트")
     @Timeout(value = 1000, unit = TimeUnit.MILLISECONDS)
     @ParameterizedTest
     @MethodSource("provideAscendingSource")
-    public void bubbleSortTests(int length, int[] actual, int[] expected){
-        Application1.solution(length, actual);
+    public void insertSortTests(int length, int[] actual, int[] expected){
+        Application3.solution(length, actual);
         Assertions.assertArrayEquals(expected, actual);
     }
-
 }
