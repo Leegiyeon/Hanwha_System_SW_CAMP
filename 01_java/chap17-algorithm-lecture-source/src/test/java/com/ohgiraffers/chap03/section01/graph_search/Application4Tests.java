@@ -13,43 +13,33 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-public class Application2Tests {
+public class Application4Tests {
     private static String input1, input2, input3;
-    private static Integer output1,output2, output3;
+    private static String output1,output2, output3;
     @BeforeAll
     public static void set() {
 
         /* 예시1 */
-        input1 = "10 8 17\n" +
-                "0 0\n" +
-                "1 0\n" +
-                "1 1\n" +
-                "4 2\n" +
-                "4 3\n" +
-                "4 5\n" +
-                "2 4\n" +
-                "3 4\n" +
-                "7 4\n" +
-                "8 4\n" +
-                "9 4\n" +
-                "7 5\n" +
-                "8 5\n" +
-                "9 5\n" +
-                "7 6\n" +
-                "8 6\n" +
-                "9 6";
-        output1 = 5;
-        input2 = "10 10 1\n" +
-                "5 5\n";
-        output2 = 1;
-        input3 = "5 3 6\n" +
-                "0 2\n" +
+        input1 = "4 5 1\n" +
                 "1 2\n" +
-                "2 2\n" +
-                "3 2\n" +
-                "4 2\n" +
-                "4 0";
-        output3 = 2;
+                "1 3\n" +
+                "1 4\n" +
+                "2 4\n" +
+                "3 4";
+        output1 = "1 2 4 3 \n" +
+                "1 2 3 4 ";
+        input2 = "5 5 3\n" +
+                "5 4\n" +
+                "5 2\n" +
+                "1 2\n" +
+                "3 4\n" +
+                "3 1";
+        output2 = "3 1 2 5 4 \n" +
+                "3 1 4 2 5 ";
+        input3 = "1000 1 1000\n" +
+                "999 1000";
+        output3 = "1000 999 \n" +
+                "1000 999 ";
 
     }
 
@@ -60,12 +50,12 @@ public class Application2Tests {
                 arguments(input3, output3)
         );
     }
-    @DisplayName("BFS1")
+    @DisplayName("BFSDFS")
     @Timeout(value = 1000, unit = TimeUnit.MILLISECONDS)
     @ParameterizedTest
     @MethodSource("provideSource")
-    public void BFS1test(String input, Integer output) throws Exception {
-        Integer result = Application2.solution(input);
+    public void BFSDFStest(String input, String output) throws Exception {
+        String result = Application4.solution(input);
         Assertions.assertEquals(output, result);
     }
 }

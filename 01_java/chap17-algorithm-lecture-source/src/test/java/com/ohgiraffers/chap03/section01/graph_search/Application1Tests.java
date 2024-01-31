@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
+
 public class Application1Tests {
     private static String input;
     private static Integer output;

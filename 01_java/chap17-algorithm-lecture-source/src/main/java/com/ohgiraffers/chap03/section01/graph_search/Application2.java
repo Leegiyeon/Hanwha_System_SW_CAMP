@@ -35,13 +35,13 @@ public class Application2 {
     }
 
 
-    public static Integer solution(String input) throws IOException {
+    public static int solution(String input) throws IOException {
 
         BufferedReader br = toBufferedReader(input);
         StringTokenizer st;
         st = new StringTokenizer(br.readLine());
-        n = Integer.valueOf(st.nextToken());
         m = Integer.valueOf(st.nextToken());
+        n = Integer.valueOf(st.nextToken());
         k = Integer.valueOf(st.nextToken());
 
         map = new int[n][m];
@@ -53,9 +53,10 @@ public class Application2 {
             int x = Integer.valueOf(st.nextToken());
             int y = Integer.valueOf(st.nextToken());
 
-            /* 설명. 입력받은 x, y 좌표와 배열을 만들 때의 순서(행, 열)는 반대의 개념이다. */
+            /* 설명. 입력 받은 x, y 좌표와 배열을 만들 때의 순서(행, 열)는 반대의 개념이다. */
             map[y][x] = 1;
         }
+
 
         count = 0;
         for (int i = 0; i < n; i++) {
@@ -63,19 +64,16 @@ public class Application2 {
 
                 if (visit[i][j] == false && map[i][j] == 1){
                     count++;
-                    bfs(j,i);               // memo. bfs의 인자는 (x,y)로 받을 것이므로 i와 j를 확인하고 넘겨준다.
+                    bfs(j, i);               // memo. bfs의 인자는 (x,y)로 받을 것이므로 i와 j를 확인하고 넘겨준다.
                 }
             }
-
         }
-
-
         return count;
     }
 
     /* 설명. 상하좌우에 배추가 심어져 있으면 한 번 씩 동작(기번적인 동작 / 방문 배열과는 다른 의미) */
-    private static void bfs(int x, int y) {
-        q.offer(new Node(x,y));
+    static void bfs(int x, int y) {
+        q.offer(new Node(x, y));
         visit[y][x] = true;
 
         /* 설명. 연속적으로 상하좌우에 배추가 심어져 있다면 반복 */
@@ -101,3 +99,5 @@ public class Application2 {
         return cur_x >= 0 && cur_x < m && cur_y >= 0 && cur_y < n;
     }
 }
+
+
