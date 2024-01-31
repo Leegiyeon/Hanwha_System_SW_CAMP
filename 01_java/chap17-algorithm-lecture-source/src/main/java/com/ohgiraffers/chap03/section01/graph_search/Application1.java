@@ -3,6 +3,10 @@ package com.ohgiraffers.chap03.section01.graph_search;
 import java.io.*;
 import java.util.StringTokenizer;
 
+/* 수업목표. DFS를 활용(재귀함수)하여 문제를 해결할 수 있다. */
+/* 필기. DFS 깊이 우선 탐색
+ *   후입 선출 구조로 stack 또는 재귀함수를 사용
+ *   한쪽 분기를 정하여 최대 깊이까지 탐색을 마친 후 다른 분기로 이동하여 다시 탐색하는 알고리즘 */
 public class Application1 {
 
     static boolean[] visit;
@@ -54,7 +58,7 @@ public class Application1 {
 
         /* 설명. 넘어온 노드와 연관된 노드를 찾는 반복문(기존에 방문하지 않은 노드) */
         for (int i = 1; i < node; i++) {
-            if (map[start][i] == 1 && !visit[i]){
+            if (map[start][i] == 1 && !visit[i]) {
                 dfs(i);
             }
         }

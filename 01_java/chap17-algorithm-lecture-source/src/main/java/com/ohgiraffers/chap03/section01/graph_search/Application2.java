@@ -5,6 +5,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+/* 수업목표. BFS와 x, y좌표를 활용하여 문제를 해결할 수 있다.(feat. 배열의 인덱스와 반대 개념) */
+/* 필기. BFS 너비 우선 탐색
+ *   선입 선출 구조로 queue 사용
+ *   시작 노드에서 출발하여 시작 노드를 기준으로 가까운 노드를 방문하면서 탐색하는 알고리즘 */
 public class Application2 {
 
     /* 설명. 테스트 코드에서 입력받는 방식을 문제에서 요구하는 대호 작성하고 문자열로 입력 받기 위해 변경한 코드 */
