@@ -5,6 +5,10 @@ import java.util.Scanner;
 public class Application4 {
 
     /* 수업목표. 퀵 정렬*/
+    /* 필기.
+     *  퀵 정렬 O(nlog n) but 최악의 경우 O(n^2)
+     *   기준값(pivot)을 선정하여 해당 값보다 작은 데이터와 큰 데이터로 분류하는 과정을 반복하는 정렬
+     *   (가장 많이 활용 한다.) */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -16,8 +20,9 @@ public class Application4 {
 
         solution(0, arr.length - 1, arr);
 
-        for (int i: arr) {
-            System.out.printf(i + " ");;
+        for (int i : arr) {
+            System.out.printf(i + " ");
+            ;
         }
 
 
@@ -28,7 +33,8 @@ public class Application4 {
             return;
         }
 
-        System.out.println("==== Before Process ====");;
+        System.out.println("==== Before Process ====");
+        ;
         int pivot = process(lo, hi, arr);
         System.out.println("lo = " + lo + ", hi = " + hi + ", pivot = " + pivot);
         System.out.println("==== After Process ====");
@@ -41,7 +47,7 @@ public class Application4 {
     private static int process(int left, int right, int[] arr) {
         int lo = left - 1;
         int hi = right + 1;
-        int pivot = arr[(left+right) / 2];
+        int pivot = arr[(left + right) / 2];
         while (true) {
             /* 설명. pivot 위치에 있는 값보다 작은 값을 가리키면 lo 포인터를 증가 */
             do {
@@ -62,7 +68,7 @@ public class Application4 {
     /* 설명. 전달된 배열과 인텍스들을 바탕으로 위치를 스왑(바꾸는) 메소드 */
     private static void swap(int[] arr, int lo, int hi) {
         int temp = arr[lo];
-        arr[lo] = arr [hi];
+        arr[lo] = arr[hi];
         arr[hi] = temp;
     }
 }

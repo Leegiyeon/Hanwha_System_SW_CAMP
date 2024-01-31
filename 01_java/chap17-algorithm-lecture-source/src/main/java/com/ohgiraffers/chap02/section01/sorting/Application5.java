@@ -2,16 +2,21 @@ package com.ohgiraffers.chap02.section01.sorting;
 
 public class Application5 {
 
-    public static void solution(int low, int high, int[] arr){
+    /* 수업목표. 병합 정렬*/
+    /* 필기.
+     *  병합 정렬 O(nlog n)
+     *   데이터를 분할하고 분할한 집합을 정렬하여 병합하는 방식을 반복하여 정렬 */
 
-        int[] temp = new int[high+1];
+    public static void solution(int low, int high, int[] arr) {
+
+        int[] temp = new int[high + 1];
 
 
         if (high - low == 0) {
             return;
         }
 
-        int median = low + (high-low) / 2;
+        int median = low + (high - low) / 2;
 
         solution(low, median, arr);
         solution(median + 1, high, arr);
