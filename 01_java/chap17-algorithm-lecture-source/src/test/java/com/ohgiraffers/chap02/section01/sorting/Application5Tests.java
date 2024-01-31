@@ -13,14 +13,14 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-public class Application4Tests {
+public class Application5Tests {
 
     private static int low1 = 0, low2 = 0;
     private static int high1, high2;
     private static int[] act1, act2;
     private static int[] exp1, exp2;
 
-    public Application4Tests() {
+    public Application5Tests() {
     }
 
     @BeforeAll
@@ -44,12 +44,12 @@ public class Application4Tests {
         );
     }
 
-    @DisplayName("퀵 정렬 테스트")
+    @DisplayName("병합 정렬 테스트")
     @Timeout(value = 1000, unit = TimeUnit.MILLISECONDS)
     @ParameterizedTest
     @MethodSource("provideDescendingSource")
-    public void quickSortTests(int low, int high, int[] actual, int[] expected) {
-        Application4.solution(low, high, actual);
+    public void SortTests(int low, int high, int[] actual, int[] expected) {
+        Application5.solution(low, high, actual);
         Assertions.assertArrayEquals(expected, actual);
     }
 }

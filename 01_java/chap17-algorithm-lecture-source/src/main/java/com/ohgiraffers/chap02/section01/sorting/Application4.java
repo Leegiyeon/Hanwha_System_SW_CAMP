@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Application4 {
 
-    /* 수업목표. */
+    /* 수업목표. 퀵 정렬*/
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -28,7 +28,11 @@ public class Application4 {
             return;
         }
 
+        System.out.println("==== Before Process ====");;
         int pivot = process(lo, hi, arr);
+        System.out.println("lo = " + lo + ", hi = " + hi + ", pivot = " + pivot);
+        System.out.println("==== After Process ====");
+
         solution(lo, pivot, arr);
         solution(pivot + 1, hi, arr);
     }
