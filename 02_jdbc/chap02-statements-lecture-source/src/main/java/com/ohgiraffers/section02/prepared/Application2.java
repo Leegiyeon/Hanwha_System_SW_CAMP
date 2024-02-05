@@ -9,6 +9,11 @@ import java.util.Scanner;
 import static com.ohgiraffers.common.JDBCTemplate.close;
 import static com.ohgiraffers.common.JDBCTemplate.getConnection;
 
+
+/* 설명.
+ *  PreparedStatement는 PlaceHolder(?)를 사용한 쿼리를 파싱하고 캐싱하여 다시 재해석하는 과정을 생략함으로써
+ *  불완전하게 작성된 쿼리의 경우 Statement보다 빠르다.
+* */
 public class Application2 {
     public static void main(String[] args) {
 
