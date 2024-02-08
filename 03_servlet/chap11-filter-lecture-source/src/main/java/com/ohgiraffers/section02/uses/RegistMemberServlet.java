@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.IOException;
 
@@ -22,6 +23,11 @@ public class RegistMemberServlet extends HttpServlet {
         System.out.println("userId = " + userId);
         System.out.println("password = " + password);
         System.out.println("name = " + name);
+
+        /* 설명. 로그인 개념을 해 보자.(암호화 된 비번과 사용자가 입력한 값을 비교) */
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        System.out.println("password가 pass01 = " + passwordEncoder.matches("pass01", password));
+        System.out.println("password가 pass02 = " + passwordEncoder.matches("pass02", password));
     }
 
 

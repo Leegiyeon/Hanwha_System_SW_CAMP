@@ -23,7 +23,6 @@ public class RequestWrapper extends HttpServletRequestWrapper {
             value = super.getParameter(key);
         }
 
-
         return value;
     }
 }
