@@ -1,4 +1,4 @@
-package com.ohgiraffers.section01.javaconfig;
+package com.ohgiraffers.common;
 
 import lombok.*;
 
@@ -9,7 +9,8 @@ import lombok.*;
 @ToString
 public class MemberDTO {
     private int sequence;
-    private String id;
-    private String pwd;
     private String name;
+    private String phone;
+    private String email;
+    private Account personalAccount;
 }
