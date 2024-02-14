@@ -10,7 +10,6 @@
     </bean>
 
 
-
     <!-- Memo. 생성자 주입 -->
 <!--    <bean id="member" class="com.ohgiraffers.common.MemberDTO">-->
 <!--        <constructor-arg name="sequence" value="1"/>-->
