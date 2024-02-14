@@ -42,8 +42,7 @@ public class LoggingAspect {
 //    @Before("execution(* com.ohgiraffers.section01.aop.*Service.*(..))")
     @Before("LoggingAspect.logPointcut()")
     public void logBefore(JoinPoint joinPoint) {
-        System.out.println("Before Advice 동작...");
+        System.out.println("Before Advice 동작 채영 매니저...");
     }
-
 
 }
