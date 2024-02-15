@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regist</title>
+</head>
+<body>
+    <h1 align="center">Regist.html</h1>
+    <h3>신규 메뉴 등록</h3>
+    <form action="regist", method="post">
+<!-- Memo. /regist로 입력하지 않고 regist만 입력하면 GET요청 시 URL 경로에 상위 경로가 함께 출력된다. -->
+        등록할 메뉴의 이름: <input type="text" name="name"><br>
+        등록할 메뉴의 가격: <input type="number" name="price"><br>
+        등록할 메뉴의 카테고리:
+        <select name="categoryCode">
+            <option value="1">식사</option>
+            <option value="2">음료</option>
+            <option value="3">디저트</option>
+        </select> <br>
+        <button type="submit">등록하기</button>
+    </form>
+</body>
+</html>
