@@ -19,10 +19,12 @@ public class MemberService {
 
     // Memo. Primary concern 주요 관심사 -> 이것을 보호막으로 감싸면 그것이 바로 프록시
     public List<MemberDTO> findAllMembers() {
+        System.out.println("target -> findAllMembers() 실행");
         return memberDAO.selectAllMembers();
     }
 
-    public MemberDTO findMemberBy(long id) {
-        return memberDAO.selectMemberBy(id);
+    public MemberDTO findMemberBy(int index) {
+        System.out.println("target -> findMemberBy() 실행");
+        return memberDAO.selectMemberBy(index);
     }
 }

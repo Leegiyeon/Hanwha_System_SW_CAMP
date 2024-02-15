@@ -11,8 +11,8 @@ public class MemberDAO {
 
     public MemberDAO() {
         memberList = new ArrayList<>();
-        memberList.add(new MemberDTO(1L,"유관순"));
-        memberList.add(new MemberDTO(2L,"홍길동"));
+        memberList.add(new MemberDTO(1,"유관순"));
+        memberList.add(new MemberDTO(2,"홍길동"));
 
     }
 
@@ -20,7 +20,12 @@ public class MemberDAO {
         return memberList;
     }
 
-    public MemberDTO selectMemberBy(long id) {
-        return memberList.get((int)id);
+    public MemberDTO selectMemberBy(int index) {
+        for (MemberDTO memberDTO : memberList) {
+            if (memberDTO.getId() == index) {
+                return memberDTO;
+            }
+        }
+        return memberList.get(index);
     }
 }
