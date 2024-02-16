@@ -4,12 +4,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 import java.net.http.HttpRequest;
+import java.util.Map;
 
 @Controller
 
@@ -36,5 +35,52 @@ public class FirstController {
         String message = name + "을(를) 메뉴 목록의 " + categoryCode + "번 카테고리에 " + price + "원으로 등록하였습니다.";
         model.addAttribute("message", message);
         return "first/messagePrinter";
+    }
+
+
+    @GetMapping("modify")
+    public void modify(){}
+
+
+    /* 설명.
+    *   Request의 Parameter로 넘어오는 값들의 key값과 일치하는 변수명을 작성하고 @RequestParam
+    *   어노테이션을 적용하면 알아서 값을 까내고 해당 매개변수의 자료형에 맞게 변환해준다.
+    *   (Spring 부터는 컨트롤러의 파싱 작업이 간소화 된다는 것을 알 수 있다.)*/
+    @PostMapping("modify")
+    /* 설명.
+    *   @RequestParam 의 속성
+    *   1. defaultValue: 사용자의 입력값이 없거나 request의 parameter 키값과 일치하지 않는
+    *                    매개변수 이름을 사용하면 매개변수가 가질 기본 default 값을 작성
+    *   2. name: request parameter의 키 값과 다른 매개변수명을 사용하고 싶을때 request parameter의 키 값을 작성
+    *   */
+    public String modifyMenu(Model model, @RequestParam(defaultValue = "default", name = "name") String modifyName,        // Memo. @RequestParam은 생략해도 동작
+                                          @RequestParam(defaultValue = "0") int modifyPrice){
+        String message = modifyName + " 메뉴의 가격을 " + modifyPrice + "로 변경하였습니다.";
+        model.addAttribute("message", message);
+
+        return "first/messagePrinter";
+    }
+
+    @PostMapping("modify2")
+    public String modifyMenu(Model model, @RequestParam Map<String, String> parameter){
+
+        String modifyName = parameter.get("name2");
+        int modifyPrice = Integer.valueOf(parameter.get("modifyPrice2"));
+        String message = modifyName + " 메뉴의 가격을 " + modifyPrice + "로 변경하였습니다.";
+        model.addAttribute("message", message);
+
+        return "first/messagePrinter";
+    }
+
+    @GetMapping("search")
+    public void searchMenu(){}
+
+    /* 설명. 핸들러 메소드에 우리가 작성한 클래스를 매개변수로 작성하면 스프링이 객체를 만들어 주고 setter 값도 주입해 준다.(Command 객체) */
+    /* 설명. @ModelAttribute 어노테이션을 활용하면 커맨드 객체를 모델에도 담아주며 키값을 지정할 수 있다.(키 값이 없으면 타입의 낙타봉 표기법이 키값이 된다.) */
+    @PostMapping("search")
+    public String searchMenu(@ModelAttribute("menu") MenuDTO menu) {
+        System.out.println("menu = " + menu);
+
+        return "first/searchResult";
     }
 }
