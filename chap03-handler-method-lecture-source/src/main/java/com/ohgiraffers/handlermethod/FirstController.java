@@ -1,16 +1,12 @@
 package com.ohgiraffers.handlermethod;
 
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.context.request.SessionScope;
 import org.springframework.web.context.request.WebRequest;
 
-import java.net.http.HttpRequest;
 import java.util.Map;
 
 @Controller
@@ -121,4 +117,15 @@ public class FirstController {
         return "first/loginResult";
     }
 
+    @GetMapping("body")
+    public void body() {}
+
+    @PostMapping("body")
+    public void body(@RequestBody String body,
+                     @RequestHeader("content-type") String contentType,
+                     @CookieValue(value="JSESSIONID") String sessionId) {
+        System.out.println("body = " + body);
+        System.out.println("contentType = " + contentType);
+        System.out.println("sessionId = " + sessionId);
+    }
 }
