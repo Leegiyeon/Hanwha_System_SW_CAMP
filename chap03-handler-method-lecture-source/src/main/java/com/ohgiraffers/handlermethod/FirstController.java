@@ -2,6 +2,7 @@ package com.ohgiraffers.handlermethod;
 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -83,4 +84,14 @@ public class FirstController {
 
         return "first/searchResult";
     }
+
+    @GetMapping("login")
+    public void login(){}
+
+    @PostMapping("login")
+    public String sessionTest1(HttpSession session, @RequestParam String id) {
+        session.setAttribute("id", id);
+        return "first/loginResult";
+    }
+
 }
