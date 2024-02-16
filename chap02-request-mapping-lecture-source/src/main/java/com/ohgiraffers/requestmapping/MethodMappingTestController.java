@@ -20,11 +20,11 @@ public class MethodMappingTestController {
     }
 
 
-    @RequestMapping(value = "/menu/modify")     // Memo. method 속성을 입력해주면 입력해준 방식으로만 적용됨(안하면 모든 방식동작)
-    public String modifyMenu(Model model) {     // Memo. Model = 응답할 페이지의 재료를 담는 객체
+    @RequestMapping(value = "/menu/modify")
+    public String modifyMenu(Model model) {
         System.out.println("/menu/modify 경로의 POST 요청 받아보기");
         model.addAttribute("message", "메뉴 수정 핸들러 메소드 호출");
-        return "mappingResult";     // Memo. resources/template/의 경로 자동 생성해줌
+        return "mappingResult";
 
     }
 
