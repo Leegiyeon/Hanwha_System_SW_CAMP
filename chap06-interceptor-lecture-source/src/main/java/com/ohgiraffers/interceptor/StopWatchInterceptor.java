@@ -23,12 +23,14 @@ public class StopWatchInterceptor implements HandlerInterceptor {
     /* 설명. boolean형에 따라 핸들러 메소드가 실행 될 수 도 있고 안 될수도 있도록 할 수 있으며 핸들러 메소드 이전 전처리 목적이다. */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        /* 설명. 핸들러 인터셉터는 bean을 활용할 수 있다.(@Service 계층의 객체도 bean이다.)*/
 //        MENUSERVICE.method();
         System.out.println("preHandle 호출함 (핸들러 메소드 이전)");
 
         long startTime = System.currentTimeMillis();
         request.setAttribute("startTime", startTime);
 
+        /* 설명. 반환형을 false로 하면 특정 조건에 의해 이후 핸들러 메소드가 실행되지 않게 할 수도 있다. */
         return true;
     }
 
