@@ -18,7 +18,8 @@ public class WebConfiguration implements WebMvcConfigurer {
     /* 설명. interceptor를 따로 등록해 주어야 실제로 동작하는 interceptor가 된다.*/
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(stopWatchInterceptor);
+
+        registry.addInterceptor(stopWatchInterceptor).excludePathPatterns("/css/**");   // Memo. excludePathPatterns 를 등록해준 경호 요청은 인터셉터가 가로채지 않음.
     }
 
 
