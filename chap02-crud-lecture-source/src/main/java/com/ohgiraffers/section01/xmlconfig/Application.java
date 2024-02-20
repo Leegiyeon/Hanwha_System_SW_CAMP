@@ -27,7 +27,9 @@ public class Application {
                 case 2:
                     menuController.findMenuByMenuCode(inputMenuCode());
                     break;
-                case 3: break;
+                case 3:
+                    menuController.registMenu(inputMenu());
+                    break;
                 case 4: break;
                 case 5: break;
                 case 9:
@@ -50,6 +52,24 @@ public class Application {
 
         Map<String, String> parameter = new HashMap<>();
         parameter.put("menuCode", menuCode);
+
+        return parameter;
+    }
+
+    private static Map<String, String> inputMenu() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("신규 메뉴의 이름을 입력해주세요: ");
+        String menuName = sc.nextLine();
+        System.out.print("신규 메뉴의 가격을 입력해주세요: ");
+        String menuPrice = sc.nextLine();
+        System.out.print("신규 메뉴의 카테고리 코드를 입력해주세요: ");
+        String categoryCode = sc.nextLine();
+
+
+        Map<String, String> parameter = new HashMap<>();
+        parameter.put("menuName", menuName);
+        parameter.put("menuPrice", menuPrice);
+        parameter.put("categoryCode", categoryCode);
 
         return parameter;
     }
