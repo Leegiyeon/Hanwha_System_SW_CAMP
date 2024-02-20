@@ -49,4 +49,27 @@ public class MenuController {
         System.out.println("result = " + result);
 
     }
+
+    public void modifyMenu(Map<String, String> parameter) {
+        int menuCode = Integer.valueOf(parameter.get("menuCode"));
+        String menuName = parameter.get("menuName");
+        int menuPrice = Integer.valueOf(parameter.get("menuPrice"));
+
+
+        MenuDTO menu = new MenuDTO();
+        menu.setMenuCode(menuCode);
+        menu.setMenuName(menuName);
+        menu.setMenuPrice(menuPrice);
+
+        boolean result = menuService.modifyMenu(menu);
+        System.out.println("result = " + result);
+
+    }
+
+    public void removeMenu(Map<String, String> parameter) {
+        int menuCode = Integer.valueOf(parameter.get("menuCode"));
+
+        boolean result = menuService.removeMenu(menuCode);
+        System.out.println("result = " + result);
+    }
 }
