@@ -27,6 +27,8 @@ public class PrintResult {
             case "modify": successMessage = "메뉴 수정을 완료하였습니다."; break;
             case "delete": successMessage = "메뉴 삭제를 완료하였습니다.";
         }
+
+        System.out.println(successMessage);
     }
 }
 
