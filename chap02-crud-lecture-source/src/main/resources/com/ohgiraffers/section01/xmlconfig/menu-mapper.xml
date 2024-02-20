@@ -31,4 +31,27 @@
           FROM TBL_MENU
          WHERE MENU_CODE = #{menuCode}      <!-- Memo. 위에 선언한 변수를 사용 -->
     </select>
+
+<!-- 설명. DML용 태그는 반환령의 개념이 필요없다.
+        (resultMap또는 resultType 속성을 태그에 사용하지 않는다.)
+     설명. ParameterType으로 던져지는 타입이 기본적으로 존재하는 자료형이 아닌 경우, 풀 클래스명을 사용한다.
+        (설정요 xml에 typeAlias 설정을 하면 줄여 쓸 수 있다.)-->
+    <insert id="insertMenu" parameterType="MenuDTO">
+        INSERT
+          INTO tbl_menu
+        (
+          MENU_NAME
+        , MENU_PRICE
+        , CATEGORY_CODE
+        , ORDERABLE_STATUS
+        )
+        VALUES
+        (
+          #{menuName}
+        , #{menuPrice}
+        , #{categoryCode}
+        , 'Y'
+        )
+
+    </insert>
 </mapper>

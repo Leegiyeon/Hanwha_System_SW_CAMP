@@ -33,4 +33,20 @@ public class MenuController {
             printResult.printMenu(menu);
         }else printResult.printErrorMessage(menuCode + "번의 메뉴는 없습니다.");
     }
+
+    public void registMenu(Map<String, String> parameter) {
+
+        String menuName = parameter.get("menuName");
+        int menuPrice = Integer.valueOf(parameter.get("menuPrice"));
+        int categoryCode = Integer.valueOf(parameter.get("categoryCode"));
+
+        MenuDTO menu = new MenuDTO();
+        menu.setMenuName(menuName);
+        menu.setMenuPrice(menuPrice);
+        menu.setCategoryCode(categoryCode);
+
+        boolean result = menuService.registMenu(menu);
+        System.out.println("result = " + result);
+
+    }
 }
