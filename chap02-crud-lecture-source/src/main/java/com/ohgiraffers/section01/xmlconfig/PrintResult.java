@@ -19,5 +19,14 @@ public class PrintResult {
     public void printMenu(MenuDTO menu) {
         System.out.println("menu : " + menu);
     }
+
+    public void printSuccessMessage(String statusCode) {
+        String successMessage = "";
+        switch (statusCode) {
+            case "regist": successMessage = "신규 메뉴 등록에 성공하였습니다."; break;
+            case "modify": successMessage = "메뉴 수정을 완료하였습니다."; break;
+            case "delete": successMessage = "메뉴 삭제를 완료하였습니다.";
+        }
+    }
 }
 

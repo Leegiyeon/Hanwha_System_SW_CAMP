@@ -45,9 +45,11 @@ public class MenuController {
         menu.setMenuPrice(menuPrice);
         menu.setCategoryCode(categoryCode);
 
-        boolean result = menuService.registMenu(menu);
-        System.out.println("result = " + result);
-
+        if (menuService.registMenu(menu)){
+            printResult.printSuccessMessage("regist");
+        }else {
+            printResult.printErrorMessage("매뉴 추가에 실패했습니다.");
+        }
     }
 
     public void modifyMenu(Map<String, String> parameter) {
@@ -61,15 +63,20 @@ public class MenuController {
         menu.setMenuName(menuName);
         menu.setMenuPrice(menuPrice);
 
-        boolean result = menuService.modifyMenu(menu);
-        System.out.println("result = " + result);
-
+        if (menuService.modifyMenu(menu)){
+            printResult.printSuccessMessage("modify");
+        }else {
+            printResult.printErrorMessage("매뉴 수정에 실패했습니다.");
+        }
     }
 
     public void removeMenu(Map<String, String> parameter) {
         int menuCode = Integer.valueOf(parameter.get("menuCode"));
 
-        boolean result = menuService.removeMenu(menuCode);
-        System.out.println("result = " + result);
+        if (menuService.removeMenu(menuCode)){
+            printResult.printSuccessMessage("remove");
+        }else {
+            printResult.printErrorMessage("매뉴 삭제에 실패했습니다.");
+        }
     }
 }
