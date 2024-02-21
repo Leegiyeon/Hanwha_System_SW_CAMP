@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
+        MenuService menuService = new MenuService();
         Scanner sc = new Scanner(System.in);
 
         do {
@@ -21,6 +22,7 @@ public class Application {
                     ifSubMenu();
                     break;
                 case 2:
+                    chooseSubmenu();
                     break;
                 case 3:
                     break;
@@ -52,6 +54,7 @@ public class Application {
                     menuService.findMenuByPrice(inputPrice());
                     break;
                 case 2:
+                    menuService.searchMenu(inputSearchCriteria());
                     break;
                 case 9:
                     return;
@@ -62,6 +65,10 @@ public class Application {
         }while (true);
     }
 
+
+
+
+
     private static int inputPrice() {
         Scanner sc = new Scanner(System.in);
         System.out.print("검색할 메뉴의 최대 금액을 입력: ");
@@ -69,5 +76,47 @@ public class Application {
 //        int price = sc.nextInt();
 //        return price;
         return sc.nextInt();
+    }
+
+    private static SearchCriteria inputSearchCriteria() {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("검색 기준을 입력해주세요(name || category): ");
+        String condition = sc.nextLine();
+        System.out.print("검색어를 입력해주세요: ");
+        String value = sc.nextLine();
+
+        return new SearchCriteria(condition, value);
+    }
+
+    private static void chooseSubmenu() {
+        Scanner sc = new Scanner(System.in);
+        MenuService menuService = new MenuService();
+        do {
+            System.out.println("===== choose SubMenu =====");
+            System.out.println("1. 카테고리 상위 분류별 메뉴(식사, 음료, 디저트)");
+            System.out.println("9. 이전 창으로...");
+            System.out.print("메뉴 선택: ");
+            int no = sc.nextInt();
+
+            switch (no) {
+                case 1:
+                    menuService.searchMenuBySupCategory(inputSupCategory());
+                    break;
+                case 9:
+                    return;
+                default:
+                    return;
+
+            }
+        }while (true);
+    }
+
+    private static SearchCriteria inputSupCategory() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("상위 분류별 메뉴(식사, 음료, 디저트): ");
+        String value = sc.nextLine();
+
+        return new SearchCriteria("category", value);
     }
 }
