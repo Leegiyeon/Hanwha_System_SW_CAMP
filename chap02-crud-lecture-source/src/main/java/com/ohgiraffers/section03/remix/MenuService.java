@@ -15,7 +15,7 @@ import static com.ohgiraffers.section03.remix.Template.getSqlSession;
 *   2. xml 파일의 namespace는 mapper용 인터페이스로 작성해야한다.
 *   3. xml 파일명과 mapper용 인터페이스명이 동일해야한다. */
 public class MenuService {
-//    private com.ohgiraffers.section02.javaconfig.MenuMapper menuMapper;
+
     public List<MenuDTO> findAllMenu() {
 
         SqlSession sqlSession = getSqlSession();
