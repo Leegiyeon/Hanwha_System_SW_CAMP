@@ -1,7 +1,6 @@
 package com.ohgiraffers.section01.xml;
 
-import java.util.Scanner;
-
+import java.util.*;
 public class Application {
     public static void main(String[] args) {
         MenuService menuService = new MenuService();
@@ -22,9 +21,10 @@ public class Application {
                     ifSubMenu();
                     break;
                 case 2:
-                    chooseSubmenu();
+                    chooseSubMenu();
                     break;
                 case 3:
+                    foreachSubMenu();
                     break;
                 case 4:
                     break;
@@ -37,6 +37,8 @@ public class Application {
         } while (true);
 
     }
+
+
 
     private static void ifSubMenu() {
         Scanner sc = new Scanner(System.in);
@@ -89,7 +91,7 @@ public class Application {
         return new SearchCriteria(condition, value);
     }
 
-    private static void chooseSubmenu() {
+    private static void chooseSubMenu() {
         Scanner sc = new Scanner(System.in);
         MenuService menuService = new MenuService();
         do {
@@ -118,5 +120,45 @@ public class Application {
         String value = sc.nextLine();
 
         return new SearchCriteria("category", value);
+    }
+
+    private static void foreachSubMenu() {
+        Scanner sc = new Scanner(System.in);
+        MenuService menuService = new MenuService();
+
+        do{
+            System.out.println("===== Foreach Submenu =====");
+            System.out.println("1. 랜덤한 메뉴 5개 추출해서 조회");
+            System.out.println("9. 이전 메뉴로");
+            System.out.print("메뉴 입력: ");
+
+            int no = sc.nextInt();
+
+            switch (no) {
+                case 1:
+                    menuService.searchMenuByRandomMenuCode(generateRandomMenuCodeList());
+                    break;
+                case 9:
+                    return;
+                default:
+                    return;
+
+            }
+        } while (true);
+    }
+
+    /* 설명. 1부터 21까지 5개의 중복되지 않는 번호를 생성하여 list로 반환하는 메소드*/
+    private static List<Integer> generateRandomMenuCodeList() {
+        Set<Integer> set = new HashSet<>();
+        while (set.size() < 5) {
+            int temp = (int) (Math.random() * 21) +1;
+            set.add(temp);
+        }
+
+        /* 설명. set을 List 형태로 바꿔서 오름차순 정렬*/
+        List<Integer> list = new ArrayList<>(set);
+        Collections.sort(list);
+
+        return list;
     }
 }

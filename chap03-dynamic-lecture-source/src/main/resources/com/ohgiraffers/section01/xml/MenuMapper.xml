@@ -27,13 +27,13 @@
           -->
     <select id="selectMenuByPrice" resultType="_int" resultMap="menuResultMap">
         SELECT
-               A.MENU_CODE
-             , A.MENU_NAME
-             , A.MENU_PRICE
-             , A.CATEGORY_CODE
-             , A.ORDERABLE_STATUS
-          FROM TBL_MENU A
-         WHERE A.ORDERABLE_STATUS = 'Y'
+        A.MENU_CODE
+        , A.MENU_NAME
+        , A.MENU_PRICE
+        , A.CATEGORY_CODE
+        , A.ORDERABLE_STATUS
+        FROM TBL_MENU A
+        WHERE A.ORDERABLE_STATUS = 'Y'
 
         <if test="price gte 0 and price lte 10000">
             <![CDATA[
@@ -54,7 +54,7 @@
 
     <select id="searchMenu" parameterType="com.ohgiraffers.section01.xml.SearchCriteria" resultMap="menuResultMap">
         SELECT
-          A.MENU_CODE
+        A.MENU_CODE
         , A.MENU_NAME
         , A.MENU_PRICE
         , A.CATEGORY_CODE
@@ -73,9 +73,10 @@
         ORDER BY A.MENU_PRICE DESC
     </select>
 
-    <select id="searchMenuBySupCategory" parameterType="com.ohgiraffers.section01.xml.SearchCriteria" resultMap="menuResultMap">
+    <select id="searchMenuBySupCategory" parameterType="com.ohgiraffers.section01.xml.SearchCriteria"
+            resultMap="menuResultMap">
         SELECT
-          A.MENU_CODE
+        A.MENU_CODE
         , A.MENU_NAME
         , A.MENU_PRICE
         , A.CATEGORY_CODE
@@ -94,5 +95,25 @@
             </when>
         </choose>
         ORDER BY A.MENU_PRICE DESC
+    </select>
+
+    <select id="searchMenuByRandomMenuCode" resultMap="menuResultMap">
+        SELECT
+          A.MENU_CODE
+        , A.MENU_NAME
+        , A.MENU_PRICE
+        , A.CATEGORY_CODE
+        , A.ORDERABLE_STATUS
+        FROM TBL_MENU A
+        WHERE A.ORDERABLE_STATUS = 'Y'
+        AND A.MENU_CODE IN
+<!--        <foreach collection="@com.ohgiraffers.section01.xml.Application@generateRandomMenuCodeList()"-->
+<!--                 item="menuCode" open="(" close=")" separator=", ">-->
+<!--            #{menuCode}-->
+<!--        </foreach>-->
+        <foreach collection="list"
+                 item="menuCode" open="(" close=")" separator=", ">
+            #{menuCode}
+        </foreach>
     </select>
 </mapper>
