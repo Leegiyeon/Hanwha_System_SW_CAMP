@@ -66,8 +66,8 @@
         WHERE A.ORDERABLE_STATUS = 'Y'
     </select>
 
-
-    <resultMap id="categoryAndMenuResulMap" type="com.ohgiraffers.section01.xmlmapper.CategoryAndMenuDTO">
+    <!--Memo. Collection을 독립적으로 사용하는 경우 -->
+    <!--<resultMap id="categoryAndMenuResulMap" type="com.ohgiraffers.section01.xmlmapper.CategoryAndMenuDTO">
         <id property="categoryCode" column="CATEGORY_CODE"/>
         <result property="categoryName" column="CATEGORY_NAME"/>
         <result property="refCategoryCode" column="REF_CATEGORY_CODE"/>
@@ -80,6 +80,20 @@
         <result property="menuPrice" column="MENU_PRICE"/>
         <result property="category" column="categoryResultMap"/>
         <result property="orderableStatus" column="ORDERABLE_STATUS"/>
+    </resultMap>-->
+
+    <!--Memo. Collection을 안에 넣어서 사용하는 경우 -->
+    <resultMap id="categoryAndMenuResulMap" type="com.ohgiraffers.section01.xmlmapper.CategoryAndMenuDTO">
+        <id property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="categoryName" column="CATEGORY_NAME"/>
+        <result property="refCategoryCode" column="REF_CATEGORY_CODE"/>
+        <collection property="menus" ofType="com.ohgiraffers.section01.xmlmapper.MenuDTO">
+            <id property="menuCode" column="MENU_CODE"/>
+            <result property="menuName" column="MENU_NAME"/>
+            <result property="menuPrice" column="MENU_PRICE"/>
+            <result property="category" column="categoryResultMap"/>
+            <result property="orderableStatus" column="ORDERABLE_STATUS"/>
+        </collection>
     </resultMap>
     <select id="selectResultMapCollectionTest" resultMap="categoryAndMenuResulMap">
         SELECT
