@@ -39,7 +39,6 @@
         <result property="refCategoryCode" column="REF_CATEGORY_CODE"/>
     </resultMap>-->
 
-
     <!--Memo. Association을 안에 넣어서 사용하는 경우 -->
     <resultMap id="menuAndCategoryResultMap" type="com.ohgiraffers.section01.xmlmapper.MenuAndCategoryDTO">
         <id property="menuCode" column="MENU_CODE"/>
@@ -65,5 +64,35 @@
         FROM TBL_MENU A
         JOIN TBL_CATEGORY B ON (A.CATEGORY_CODE = B.CATEGORY_CODE)
         WHERE A.ORDERABLE_STATUS = 'Y'
+    </select>
+
+
+    <resultMap id="categoryAndMenuResulMap" type="com.ohgiraffers.section01.xmlmapper.CategoryAndMenuDTO">
+        <id property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="categoryName" column="CATEGORY_NAME"/>
+        <result property="refCategoryCode" column="REF_CATEGORY_CODE"/>
+        <collection property="menus" resultMap="menuResultMap"/>
+    </resultMap>
+
+    <resultMap id="menuResultMap" type="com.ohgiraffers.section01.xmlmapper.MenuDTO">
+        <id property="menuCode" column="MENU_CODE"/>
+        <result property="menuName" column="MENU_NAME"/>
+        <result property="menuPrice" column="MENU_PRICE"/>
+        <result property="category" column="categoryResultMap"/>
+        <result property="orderableStatus" column="ORDERABLE_STATUS"/>
+    </resultMap>
+    <select id="selectResultMapCollectionTest" resultMap="categoryAndMenuResulMap">
+        SELECT
+              B.CATEGORY_CODE
+            , B.CATEGORY_NAME
+            , B.REF_CATEGORY_CODE
+            , A.MENU_CODE
+            , A.MENU_NAME
+            , A.MENU_PRICE
+            , A.CATEGORY_CODE
+            , A.ORDERABLE_STATUS
+         FROM TBL_CATEGORY B
+         LEFT JOIN TBL_MENU A ON (A.CATEGORY_CODE = B.CATEGORY_CODE)
+        ORDER BY B.CATEGORY_CODE
     </select>
 </mapper>

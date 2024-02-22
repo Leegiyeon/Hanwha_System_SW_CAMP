@@ -20,6 +20,7 @@ public class Application {
                 System.out.println("프로그램 종료");
                 return;
             default:
+                System.out.println("번호를 다시 입력해주세요.");
                 break;
         }
 
@@ -46,11 +47,12 @@ public class Application {
                     elementService.selectAssociationTest();
                     break;
                 case 3:
-//                    elementService.selectCollectionTest();
+                    elementService.selectCollectionTest();
                     break;
                 case 9:
-                    break;
+                    return;
                 default:
+                    System.out.println("번호를 다시 입력해주세요.");
                     break;
             }
         } while (true);

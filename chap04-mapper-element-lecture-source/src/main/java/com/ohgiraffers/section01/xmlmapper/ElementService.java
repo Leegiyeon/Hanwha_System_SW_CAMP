@@ -27,4 +27,14 @@ public class ElementService {
         System.out.println("첫번째 메뉴의 카테고리 이름: " + menus.get(0).getCategory().getCategoryName());
         sqlSession.close();
     }
+
+    public void selectCollectionTest() {
+        SqlSession sqlSession = getSqlSession();
+        ElementMapper mapper = sqlSession.getMapper(ElementMapper.class);
+
+        List<CategoryAndMenuDTO> menus = mapper.selectResultMapCollectionTest();
+        menus.forEach(System.out::println);
+
+        sqlSession.close();
+    }
 }
