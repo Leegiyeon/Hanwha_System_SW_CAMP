@@ -8,6 +8,11 @@ public class OrderMenu {
     public OrderMenu() {
     }
 
+    public OrderMenu(int menuCode, int orderAmount) {
+        this.menuCode = menuCode;
+        this.orderAmount = orderAmount;
+    }
+
     public OrderMenu(int menuCode, int orderCode, int orderAmount) {
         this.menuCode = menuCode;
         this.orderCode = orderCode;
@@ -24,6 +29,10 @@ public class OrderMenu {
 
     public int getOrderAmount() {
         return orderAmount;
+    }
+
+    public void setOrderCode(int orderCode) {
+        this.orderCode = orderCode;
     }
 
     @Override
