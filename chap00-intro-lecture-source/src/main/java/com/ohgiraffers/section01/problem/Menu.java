@@ -1,6 +1,7 @@
 package com.ohgiraffers.section01.problem;
 
 public class Menu {
+
     private int menuCode;
     private String menuName;
     private int menuPrice;
