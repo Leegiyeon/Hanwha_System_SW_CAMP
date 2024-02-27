@@ -7,8 +7,8 @@ import jakarta.persistence.*;
 public class Menu {
 
     @Id                                 // PK에 해당하는 속성
-    @Column(name = "menu_code")         //데이터베이스에 대응되는 컬럼명
-    @GeneratedValue(strategy = GenerationType.IDENTITY)         // 기본카 겂을 데이터 베이스에
+    @Column(name = "menu_code")         // 데이터베이스에 대응되는 컬럼명
+    @GeneratedValue(strategy = GenerationType.IDENTITY)         // 기본키 값을 데이터 베이스에
     private int menuCode;
 
     @Column(name = "menu_name")
