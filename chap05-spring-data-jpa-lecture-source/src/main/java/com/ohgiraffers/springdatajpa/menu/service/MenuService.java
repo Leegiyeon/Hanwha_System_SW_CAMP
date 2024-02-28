@@ -6,6 +6,8 @@ import com.ohgiraffers.springdatajpa.menu.entity.Category;
 import com.ohgiraffers.springdatajpa.menu.entity.Menu;
 import com.ohgiraffers.springdatajpa.menu.repository.CategoryRepository;
 import com.ohgiraffers.springdatajpa.menu.repository.MenuRepository;
+import jakarta.transaction.Transactional;
+import lombok.ToString;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -70,7 +72,7 @@ public class MenuService {
     }
 
 
-    /* 설명. 전달 받은 가격을 초과하는 메뉴의 목록을 조회하는 메소드*/
+    /* 설명. 4. 전달 받은 가격을 초과하는 메뉴의 목록을 조회하는 메소드*/
     public List<MenuDTO> findMenuPrice(int menuPrice) {
 
         List<Menu> menuList = menuRepository.findByMenuPriceGreaterThan(menuPrice);
@@ -79,9 +81,15 @@ public class MenuService {
         return menuList.stream().map(menu -> mapper.map(menu, MenuDTO.class)).collect(Collectors.toList());
     }
 
+    /* 설명. 5.  */
     public List<CategoryDTO> findAllCategory() {
         List<Category> categoryList = categoryRepository.findAllCategory();
-
         return categoryList.stream().map(category -> mapper.map(category, CategoryDTO.class)).collect(Collectors.toList());
+    }
+
+    /* 설명. 6. */
+    @Transactional
+    public void registMenu(MenuDTO newMenu) {
+        menuRepository.save(mapper.map(newMenu, Menu.class));
     }
 }
