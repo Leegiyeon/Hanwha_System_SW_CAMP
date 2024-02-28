@@ -47,7 +47,6 @@ public class MenuService {
 
     /* 설명. 2. findAll 예제(Paging 처리 전) */
     public List<MenuDTO> findMenuList() {
-
         List<Menu> menuList = menuRepository.findAll(Sort.by("menuCode").descending());
 
         // Memo. List를 하나씩 꺼내어 Map에 넣는다. -> 메뉴를 하나씩 DTO 형태로 쌓는다. -> DTO를 List형태로 변환한다.
@@ -56,8 +55,6 @@ public class MenuService {
 
     /* 설명. 3. findAll 예제(Paging 처리 후) */
     public Page<MenuDTO> findMenuList(Pageable pageable) {
-
-
         /* 설명.
         *   1. 넘어온 pageable에 담긴 페이지 번호를 인덱스 개념으로 바꿔 인지 시킴
         *   2. 한 페이지에 뿌려질 데이터 크기
@@ -72,24 +69,36 @@ public class MenuService {
     }
 
 
-    /* 설명. 4. 전달 받은 가격을 초과하는 메뉴의 목록을 조회하는 메소드*/
+    /* 설명. 4. 전달 받은 가격을 초과하는 메뉴의 목록을 조회하는 메소드 */
     public List<MenuDTO> findMenuPrice(int menuPrice) {
-
         List<Menu> menuList = menuRepository.findByMenuPriceGreaterThan(menuPrice);
-
 
         return menuList.stream().map(menu -> mapper.map(menu, MenuDTO.class)).collect(Collectors.toList());
     }
 
-    /* 설명. 5.  */
+    /* 설명. 5. 모든 카테고리를 불러오는 메소드 */
     public List<CategoryDTO> findAllCategory() {
         List<Category> categoryList = categoryRepository.findAllCategory();
+
         return categoryList.stream().map(category -> mapper.map(category, CategoryDTO.class)).collect(Collectors.toList());
     }
 
-    /* 설명. 6. */
+    /* 설명. 6. Insert New Menu */
     @Transactional
     public void registMenu(MenuDTO newMenu) {
         menuRepository.save(mapper.map(newMenu, Menu.class));
+    }
+
+    /* 설명. 7. Update Menu */
+    @Transactional
+    public void modifyMenu(MenuDTO modifyMenu) {
+        Menu foundMenu = menuRepository.findById(modifyMenu.getMenuCode()).orElseThrow(IllegalAccessError::new);
+        foundMenu.setMenuName(modifyMenu.getMenuName());
+    }
+
+    /* 설명. 8. Delete Menu */
+    @Transactional
+    public void deleteMenu(int menuCode) {
+        menuRepository.deleteById(menuCode);
     }
 }

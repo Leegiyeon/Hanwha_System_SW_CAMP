@@ -73,7 +73,6 @@ public class MenuController {
         log.info("여러 페이지 중 현재 페이지 인덱스: {}", menuList.getNumber());
 
         /* 설명. 화면에서 버튼을 그리기 위해 필요한 재료준비(모듈화: 클래스 두개 추가) */
-
         PagingButtonInfo paiging = Pagination.getPagingButtonInfo(menuList);
         model.addAttribute("paging", paiging);
         model.addAttribute("menuList", menuList);
@@ -82,10 +81,7 @@ public class MenuController {
     }
 
     @GetMapping("/querymethod")
-    public void queryMethodPage() {
-
-    }
-
+    public void queryMethodPage() {}
     @GetMapping("/search")
     public String findMenuPrice(@RequestParam int menuPrice, Model model) {
 
@@ -95,10 +91,6 @@ public class MenuController {
 
         return "menu/searchResult";
     }
-
-
-    @GetMapping("/regist")
-    public void registPage() {}
 
 
     /* 설명. /menu/regist.html이 열리자마자 js 코드를 통해 /menu/category 비동기 요청이 오게 된다. */
@@ -113,7 +105,10 @@ public class MenuController {
       return menuService.findAllCategory();
     }
 
+
     /* 설명. Spring Data JPA 로 DML 작업하기(Insert, Update, Delete) */
+    @GetMapping("/regist")
+    public void registPage() {}
     @PostMapping("/regist")
     public String registMenu(MenuDTO newMenu) {
         menuService.registMenu(newMenu);
@@ -122,4 +117,22 @@ public class MenuController {
         return "redirect:/menu/list";
     }
 
+
+    @GetMapping("/modify")
+    public void modifyPage() {}
+    @PostMapping("/modify")
+    public String modifyMenu(MenuDTO modifyMenu) {
+        menuService.modifyMenu(modifyMenu);
+        return "redirect:/menu/" + modifyMenu.getMenuCode();
+    }
+
+
+    @GetMapping("/delete")
+    public void deletePage() {}
+    @PostMapping("/delete")
+    public String deleteMenu(@RequestParam int menuCode){
+        menuService.deleteMenu(menuCode);
+
+        return "redirect:/menu/list";
+    }
 }
