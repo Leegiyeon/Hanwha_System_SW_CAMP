@@ -1,0 +1,20 @@
+### Get request hello
+GET localhost:8080/response/hello
+
+### Get request random
+GET localhost:8080/response/random
+
+### Get request test
+GET localhost:8080/response/test
+
+### Get request list
+GET localhost:8080/response/list
+
+### Get request map
+GET localhost:8080/response/map
+
+### Get request image
+GET localhost:8080/response/image
+
+### Get request entity
+GET localhost:8080/response/entity
