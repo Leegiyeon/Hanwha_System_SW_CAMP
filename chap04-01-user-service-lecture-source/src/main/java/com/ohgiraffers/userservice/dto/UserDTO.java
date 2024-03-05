@@ -10,6 +10,4 @@ public class UserDTO {
     private String userId;
     private java.util.Date enrollDate;
 
-
-
 }

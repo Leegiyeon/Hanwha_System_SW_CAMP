@@ -11,15 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 //@RequestMapping("/second-service")
 @RequestMapping("/")
 public class SecondServiceController {
-
     @GetMapping("health_check")
-    public String healthCheck () {
+    public String healthCheck() {
         return "I'm OK2";
     }
 
     @GetMapping("message")
     public String message(@RequestHeader("second-request") String header) {
-        log.info("넘어온 헤더 값: {}", header);
+        log.info("넘어온 헤더값: {}", header);
         return "Second Service Message";
     }
 }
