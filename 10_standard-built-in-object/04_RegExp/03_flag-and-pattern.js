@@ -36,7 +36,7 @@ console.log(target.match(/b+/g));
 console.log('-------------------');
 
 /* ?: 앞선 패턴이 없거나 하나 있는 문자열({0,1}와 같다.) */
-target = 'soul seoul';
+target = 'soul seoul seeoul';
 console.log(target.match(/se?oul/g));   // e가 있거나 없어도 되며 soul, seoul를 찾아줌
 console.log('-------------------');
 
@@ -73,7 +73,7 @@ console.log(target.match(/\W+/g));        // 그 외의 특수기호
 
 /* [...] 내의 ^: not */
 console.log(target.match(/[^0-9]+/g));    // 숫자가 없는 단어, \D랑 같다.
-console.log(target.match(/[^a-zA-Z]+/g)); // 대소문자가 아닌 단어
+console.log(target.match(/[^a-zA-Z]+/g)); // 영어 대소문자가 아닌 단어
 
 /* ^: 시작 위치, $: 마지막 위치 */
 target = 'https://www.google.com/https';
