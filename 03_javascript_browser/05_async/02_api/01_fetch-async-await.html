@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function callAPI() {
+            const promise = fetch('https://jsonplaceholder.typicode.com/users');
+            console.log(promise);
+            // promise.then(response => {
+
+                /* fetch를 통해 통신 결과로 돌아온 promise의 성공 결과는 데이터 뿐 아니라 추가적인 정보를 지닌 response이다. 
+                   json데이터(우리가 벡엔드와 통신 결과로 얻고자한 데이터)를 꺼내기 위해 .json으로 접근한다.
+                */
+            //     return response.json();     // 하지만 .json의 결과는 promise이다. 따라서 .then또는 await로 접근해야 한다.
+            // }).then(result => {
+            //     console.log(result);
+            //     console.log(result[0].name); 
+            // })
+
+            // console.log(promise['[PromiseResult]']);   대괄호로 둘러싸인 속성은 접근이 불가
+
+            /* 1. Promise의 then 메소드 활용으로 결과 객체(response) 꺼내기 */
+            promise.then(response => {
+                console.log('promise의 결과', response);
+            });
+
+            /* 2. async await를 활용하여 결과 객체 꺼내기 */
+            const response = await promise;
+            console.log('await를 통한 promise의 결과', response);
+            
+            /* fetch의 결과로 돌아온 추가적인 정보들 확인 */
+            console.log('응답 상태: ${response.status}');
+            console.log('응답 헤더');
+
+            console.log(`response.headers: ${response.headers}`);
+            console.log(`response.headers[Symbol.iterator.next.value]`);
+
+            /* response.header는 배열들 여러개가 담긴 형태이고 배열을 하나씩 꺼내어 배열 구조분해 할당으로 key와 value 추출 */
+            /*
+                for in문: 객체의 프로퍼티들을 확인하기 위한 반복문 
+                for of문: iterable한 컬렉션 타입들을 반복하기 위한 반복문
+            */
+            for(let [key, value] of response.headers) {     // for of문은 Symbol타입도 같이 반복시켜 확인 가능
+                console.log(`${key}: ${value}`);
+            }
+
+            console.log(`본문 내용 사용 여부: ${response.bodyUsed}`);
+
+            /* response의 body를 꺼내는 방법은 text()와 json()이 있고 두번 이상 꺼내 쓸 수 없다.(bodyUsed가 true로 바뀜) */
+            // const responseText = await response.text();
+            // console.log(responseText);
+
+            /* text가 아닌 json으로 꺼내면 JavaScript 엔진에 의해 JavaScript의 객체로 해석(파싱)된다. */
+            const json = await response.text();
+            console.log(json);
+            /* 데이터는 한 번 쓰면 사용할 수 없기에 문자열을 얻기 위해서 다시 통신하지 않고 stringfy를 통해 문자열로 변환하여 사용 */
+            console.log(JSON.stringify(json));
+        }
+
+
+        callAPI();
+    </script>
+</body>
+</html>
