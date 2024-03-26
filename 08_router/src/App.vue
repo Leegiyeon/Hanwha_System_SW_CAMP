@@ -22,12 +22,23 @@
     <h1>Router 사용하기</h1>
     <hr>
     <div class="wrapper">
+
+      <!-- 
       <h2>basic router</h2>
-      <nav>
+        <nav>
         <RouterLink to="/" active-class="active" replace>Home</RouterLink>
         <RouterLink to="/pathvariable/1" active-class="active" replace>PathVariable</RouterLink>
         <RouterLink to="/querystring?name=홍길동&age=20" active-class="active">QueryString</RouterLink>
+        </nav> 
+      -->
+
+      <h2>nested router</h2>
+      <nav>
+        <RouterLink to="/" active-class="active">Home</RouterLink>
+        <RouterLink to="/nested/home" active-class="active">중첩 Index</RouterLink>
+        <RouterLink to="/nested/view" active-class="active">중첩 Router</RouterLink>
       </nav>
+
     </div>
   </header>
 
