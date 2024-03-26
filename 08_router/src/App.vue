@@ -2,6 +2,8 @@
   import {RouterLink, RouterView} from 'vue-router';
 </script>
 
+<!-- npm install vue-router@next -->
+
 <template>
   <header>
     <h1>Router 사용하기</h1>
