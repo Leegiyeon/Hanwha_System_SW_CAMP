@@ -1,5 +1,5 @@
 {
-  "name": "09_vue_bootstrap",
+  "name": "ohgiraffers",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,13 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "bootstrap": "^5.3.3",
-    "bootstrap-vue": "^2.23.1",
-    "bootstrap-vue-3": "^0.5.1",
-    "vue": "^3.4.21"
+    "vue": "^3.4.21",
+    "vue-image-load": "^0.0.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
-    "vite": "^5.1.6"
+    "vite": "^5.1.5"
   }
 }
