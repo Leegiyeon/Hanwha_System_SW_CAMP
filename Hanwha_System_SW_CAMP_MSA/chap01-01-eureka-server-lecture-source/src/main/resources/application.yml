@@ -1,0 +1,18 @@
+# Eureka Server를 WebService로 등록
+server:
+  port: 8761
+
+# 각각의 micro service ID 등록
+spring:
+  application:
+    name: discoveryservice
+
+# 구동중인 Eureka Server도 레자스트리로 등록되는 것을 취소하는 설정
+# 단순 서버로만 기동/micro service 들과 연동 목적이 아님
+eureka:
+  client:
+
+    # Eureka Server로부터 인스턴스 정보들을 주기적으로 가져와 갱신 된 정보를 받겠다는 설정
+    # 주기적으로 갱신해서 외부에서 검색 가능한 형태로 만듦
+    register-with-eureka: false
+    fetch-registry: false
