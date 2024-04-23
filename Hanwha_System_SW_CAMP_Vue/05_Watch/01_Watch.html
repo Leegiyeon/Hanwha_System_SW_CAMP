@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        watch
+        데이터의 변경을 감지하고 그에 따라 추가 동작을 수행할 수 있다.
+        watch함수는 vue 인스턴스가 생성되고 setup 함수 내부에서 사용된다.
+     -->
+
+    <div id="step01">
+        <p>
+            현재값: {{currentValue}}
+        </p>
+        <p>
+            이전값: {{previousValue}}
+        </p>
+
+        <input type="text" v-model="currentValue">
+
+    </div>
+
+    <div id="step02">
+        <p>
+            {{sum}}
+        </p>
+        <button @click="x++">x++</button>
+        <button @click="y++">y++</button>
+        <button @click="z++">z++</button>
+    </div>
+
+    <script>
+        const {createApp, ref, watch} = Vue;
+
+        createApp({
+            setup() {
+                const currentValue = ref(0);
+                const previousValue = ref(0);
+
+                watch(currentValue, async(newVal, oldVal) => {
+                    if(newVal != previousValue) {
+                        console.log(newVal);
+                        console.log(oldVal);
+
+                        previousValue = oldVal;
+                    }
+                })
+                
+                return {
+                    currentValue,
+                    previousValue
+                }
+            }
+        }).mount('#step01');
+
+        createApp({
+            setup() {
+                const sum = ref(0);
+                const x = ref(0);
+                const y = ref(0);
+                const z = ref(0);
+                
+                watch(() => {
+                    console.log('언제실행');
+                    return x.value + y.value + z.value;
+                },
+                (result) => {
+                    console.log(result);
+                    sum.value = result;
+                }) 
+
+
+                return {
+                    sum,
+                    x,
+                    y,
+                    z
+                }
+            }
+        }).mount('#step02');
+    </script>
+</body>
+</html>

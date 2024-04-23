@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="step01">
+        <p>
+            {{num}}
+        </p>
+        <button @click="num++">num++</button>
+    </div>
+
+    <div id="step02">
+        <p>
+            {{num}}
+        </p>
+        <button @click="num++">num++</button>
+    </div>
+
+    <script>
+        const {createApp, ref} = Vue;
+
+        createApp({
+            setup() {
+                const num = ref(0);
+
+                watch(num, (newValue, oldValue) =>{
+                    console.log('newValue:', newValue);
+                    console.log('oldValue:', oldValue);
+                },
+                {immediate: true})
+
+                return {
+                    num
+                }
+            }
+        }).mount('#step01');
+
+        createApp({
+            setup() {
+                const num = ref(0);
+
+                watch(num, (newValue, oldValue) =>{
+                    console.log('newValue:', newValue);
+                    console.log('oldValue:', oldValue);
+                },
+                {once: true})
+                
+                return {
+                    num
+                }
+            }
+        }).mount('#step02');
+    </script>
+
+</body>
+</html>
