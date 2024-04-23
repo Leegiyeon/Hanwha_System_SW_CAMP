@@ -1,0 +1,84 @@
+package com.ohgiraffers.section03.primarykey.subsection02.table;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+import org.junit.jupiter.api.*;
+
+import java.util.List;
+
+public class SequenceTableMappingTests {
+    private static EntityManagerFactory entityManagerFactory;
+    private EntityManager entityManager;
+
+    @BeforeAll
+    public static void initFactory() {
+        entityManagerFactory = Persistence.createEntityManagerFactory("jpatest");
+    }
+
+    @BeforeEach
+    public void initManager() {
+        entityManager = entityManagerFactory.createEntityManager();
+    }
+
+    @AfterAll
+    public static void closeFactory() {
+        entityManagerFactory.close();
+    }
+
+    @AfterEach
+    public void closeManager() {
+        entityManager.close();
+    }
+
+    /* 설명.
+     *   strategy: 자동 생성 전략을 지정
+     *    - GenerationType.IDENTIFY: 기본 키 생성을 데이터 베이스에 위임
+     *    - GenerationType.SEQUENCE: 데이터 베이스 시퀀스 객체 사용
+     *    - GenerationType.TABLE: 키 생성 테이블 사용
+     *    - GenerationType.AUTO: 자동 선택
+     * */
+
+    @Test
+    public void 식별자_매핑_테스트() {
+        Member member = new Member();
+//        member.setMemberNo(1);
+        member.setMemberId("user01");
+        member.setMemberPwd("pass01");
+        member.setNickname("홍길동");
+        member.setPhone("010-1111-1111");
+        member.setEmail("gildong@gmail.com");
+        member.setAddress("서울특별시");
+        member.setEnrollDate(new java.util.Date());
+        member.setMemberRole("Role_MEMBER");
+
+        Member member2 = new Member();
+//        member2.setMemberNo(2);
+        member2.setMemberId("user02");
+        member2.setMemberPwd("pass02");
+        member2.setNickname("유관순");
+        member2.setPhone("010-2222-2222");
+        member2.setEmail("soon@gmail.com");
+        member2.setAddress("수원특례시");
+        member2.setEnrollDate(new java.util.Date());
+        member2.setMemberRole("Role_MEMBER2");
+        member2.setStatus("Y");
+
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+
+        entityManager.persist(member);
+        entityManager.persist(member2);
+
+        entityTransaction.commit();
+
+        Member selectedMember = entityManager.find(Member.class, 1);
+        System.out.println("selectedMember = " + selectedMember);
+
+        String jpql = "SELECT A.memberNo FROM member_section03_subsection02 A";
+        List<Integer> memberNoList = entityManager.createQuery(jpql, Integer.class).getResultList();
+
+        memberNoList.forEach(System.out::println);
+    }
+}
