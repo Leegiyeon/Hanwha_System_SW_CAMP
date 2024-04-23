@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Result</title>
+</head>
+<body>
+    <h1 align="center">Session에 담긴 값 확인하기</h1>
+    <h3 align="center" th:text="|${session.id}님 환영합니다.|"></h3>  <!--Memo. ThymeLeaf Scope를 적고 값을 꺼내야한다.(param, request, session) -->
+    <h3 align="center" th:text="|PW: ${session.pwd}|"></h3>  <!--Memo. ThymeLeaf Scope를 적고 값을 꺼내야한다.(param, request, session) -->
+
+<!--    <h1 align="center">Model에 담긴 값 확인하기</h1>-->
+<!--    <h3 align="center" th:text="|${model.id}님 환영합니다.|"></h3>  &lt;!&ndash;Memo. ThymeLeaf Scope를 적고 값을 꺼내야한다.(param, request, session) &ndash;&gt;-->
+<!--    <h3 align="center" th:text="|PW: ${model.pwd}|"></h3>-->
+
+    <div align="right">
+        <button onclick="location.href='logout1'">로그아웃1</button>
+        <button onclick="location.href='logout2'">로그아웃2</button>
+    </div>
+</body>
+</html>
